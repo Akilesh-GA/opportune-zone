@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@RestController
+@RestController // used to serve the rest apis return json and xml
 public class BackendApplication {
 
     public static void main(String[] args) {
@@ -14,12 +14,8 @@ public class BackendApplication {
     }
 
     @GetMapping("/")
-    public String home() {
-        return "Welcome to Opportune Zone!";
+    public String welcome() {
+        return "Welcome to Opportune Zone";
     }
 
-    @GetMapping("/port")
-    public String hello() {
-        return "Hello from Spring Boot on port 8084!";
-    }
 }
