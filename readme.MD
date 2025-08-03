@@ -2,7 +2,6 @@
 
 A full-stack web application for job seekers and recruiters, enabling streamlined job postings, applications, and candidate management. Built using modern web technologies and scalable backend services.
 
----
 
 ## 🌐 Tech Stack
 
@@ -17,7 +16,6 @@ A full-stack web application for job seekers and recruiters, enabling streamline
 | Version Control| Git + GitHub                 |
 -------------------------------------------------
 
----
 
 ## 📌 Features
 
@@ -27,8 +25,6 @@ A full-stack web application for job seekers and recruiters, enabling streamline
 - ✅ Resume Upload and Profile Management
 - ✅ Real-time Job Filtering
 - ✅ Secure and Responsive Web Interface
-
----
 
 ## 🛠️ Setup Instructions
 
