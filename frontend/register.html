@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opportune Zone - Job Portal Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        .form-container {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .password-strength {
+            height: 4px;
+            transition: all 0.3s;
+        }
+        
+        .toggle-password:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        
+        .success-message {
+            color: #22c55e;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
+    <div class="w-full max-w-xl mx-4">
+        <div class="flex justify-center mb-8">
+            <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <h1 class="ml-2 text-3xl font-bold text-gray-800">Opportune <span class="text-indigo-600">Zone</span></h1>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-xl form-container p-8">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800">Create Your Account</h2>
+                <p class="text-gray-600 mt-2">Join thousands of professionals finding their dream jobs</p>
+            </div>
+            
+            <form id="registrationForm" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                        <input type="text" id="firstName" name="firstName" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300">
+                        <div id="firstNameError" class="error-message"></div>
+                    </div>
+                    
+                    <div>
+                        <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300">
+                        <div id="lastNameError" class="error-message"></div>
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300">
+                    <div id="emailError" class="error-message"></div>
+                </div>
+                
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300">
+                    <div id="phoneError" class="error-message"></div>
+                </div>
+                
+                <div>
+                    <label for="userType" class="block text-sm font-medium text-gray-700 mb-1">I am a</label>
+                    <select id="userType" name="userType" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300">
+                        <option value="Choose a option">Choose a option</option>
+                        <option value="jobSeeker">Job Seeker</option>
+                        <option value="employer">Employer</option>
+                        <option value="recruiter">Recruiter</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <div class="relative">
+                        <input type="password" id="password" name="password" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300" placeholder="••••••••">
+                        <span class="absolute right-3 top-3 toggle-password" onclick="togglePasswordVisibility('password', 'passwordToggleIcon')">
+                            <svg id="passwordToggleIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="flex mt-2 space-x-1">
+                        <div id="strength1" class="password-strength w-1/4 bg-gray-200 rounded-full"></div>
+                        <div id="strength2" class="password-strength w-1/4 bg-gray-200 rounded-full"></div>
+                        <div id="strength3" class="password-strength w-1/4 bg-gray-200 rounded-full"></div>
+                        <div id="strength4" class="password-strength w-1/4 bg-gray-200 rounded-full"></div>
+                    </div>
+                    <div id="passwordError" class="error-message"></div>
+                    <div id="passwordSuccess" class="success-message"></div>
+                </div>
+                
+                <div>
+                    <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                    <div class="relative">
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300" placeholder="••••••••">
+                        <span class="absolute right-3 top-3 toggle-password" onclick="togglePasswordVisibility('confirmPassword', 'confirmPasswordToggleIcon')">
+                            <svg id="confirmPasswordToggleIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div id="confirmPasswordError" class="error-message"></div>
+                </div>
+                
+                <div class="flex items-center">
+                    <input id="termsCheckbox" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                    <label for="termsCheckbox" class="ml-2 block text-sm text-gray-700">
+                        I agree to the <a href="#" class="text-indigo-600 hover:text-indigo-500">Terms of Service</a> and <a href="#" class="text-indigo-600 hover:text-indigo-500">Privacy Policy</a>
+                    </label>
+                </div>
+                <div id="termsError" class="error-message"></div>
+                
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    Create Account
+                </button>
+            </form>
+            
+            <div class="mt-6 text-center">
+                <p class="text-gray-600">Already have an account? <a href="login.html" class="text-indigo-600 font-medium hover:text-indigo-500">Log in</a></p>
+            </div>
+        </div>
+        <br>
+         <!-- Social Login -->
+            <div class="grid grid-cols-2 gap-3 mb-6">
+                <button type="button" class="social-btn flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-800 hover:bg-gray-50">
+                    <img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="Google logo icon for social login" class="w-6 h-6 mr-2">
+                    Google
+                </button>
+                <button type="button" class="social-btn flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-800 hover:bg-gray-50">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/48a1c922-3ca7-4531-a15e-60458acda6b4.png" alt="LinkedIn logo icon for social login" class="w-6 h-6 mr-2">
+                    LinkedIn
+                </button>
+            </div>
+        
+        <div class="mt-6 text-center text-sm text-gray-500">
+            <p>© 2025 CareerConnect. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Toggle password visibility
+        function togglePasswordVisibility(passwordFieldId, iconId) {
+            const passwordField = document.getElementById(passwordFieldId);
+            const icon = document.getElementById(iconId);
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />`;
+            } else {
+                passwordField.type = 'password';
+                icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />`;
+            }
+        }
+
+        // Password strength indicator
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const strength1 = document.getElementById('strength1');
+            const strength2 = document.getElementById('strength2');
+            const strength3 = document.getElementById('strength3');
+            const strength4 = document.getElementById('strength4');
+            const passwordSuccess = document.getElementById('passwordSuccess');
+            
+            // Reset all strength indicators
+            [strength1, strength2, strength3, strength4].forEach(indicator => {
+                indicator.className = 'password-strength w-1/4 bg-gray-200 rounded-full';
+            });
+            
+            if (password.length === 0) {
+                passwordSuccess.textContent = '';
+                return;
+            }
+            
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (password.match(/[a-z]/)) strength++;
+            if (password.match(/[A-Z]/)) strength++;
+            if (password.match(/[0-9]/)) strength++;
+            if (password.match(/[^a-zA-Z0-9]/)) strength++;
+            
+            // Visual feedback
+            if (strength >= 1) strength1.className = 'password-strength w-1/4 bg-red-400 rounded-full';
+            if (strength >= 3) {
+                strength2.className = 'password-strength w-1/4 bg-yellow-400 rounded-full';
+                strength1.className = 'password-strength w-1/4 bg-yellow-400 rounded-full';
+            }
+            if (strength >= 5) {
+                strength3.className = 'password-strength w-1/4 bg-green-400 rounded-full';
+                strength2.className = 'password-strength w-1/4 bg-green-400 rounded-full';
+                strength1.className = 'password-strength w-1/4 bg-green-400 rounded-full';
+            }
+            if (strength >= 7) {
+                strength4.className = 'password-strength w-1/4 bg-green-500 rounded-full';
+                strength3.className = 'password-strength w-1/4 bg-green-500 rounded-full';
+                strength2.className = 'password-strength w-1/4 bg-green-500 rounded-full';
+                strength1.className = 'password-strength w-1/4 bg-green-500 rounded-full';
+                passwordSuccess.textContent = 'Strong password!';
+            } else if (strength >= 5) {
+                passwordSuccess.textContent = 'Good password';
+            } else if (strength >= 3) {
+                passwordSuccess.textContent = 'Fair password';
+            } else {
+                passwordSuccess.textContent = '';
+            }
+        });
+
+        // Form validation
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset error messages
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+            
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const termsChecked = document.getElementById('termsCheckbox').checked;
+            
+            let isValid = true;
+            
+            // Validate first name
+            if (!firstName) {
+                document.getElementById('firstNameError').textContent = 'First name is required';
+                isValid = false;
+            } else if (firstName.length < 2) {
+                document.getElementById('firstNameError').textContent = 'First name must be at least 2 characters';
+                isValid = false;
+            }
+            
+            // Validate last name
+            if (!lastName) {
+                document.getElementById('lastNameError').textContent = 'Last name is required';
+                isValid = false;
+            } else if (lastName.length < 2) {
+                document.getElementById('lastNameError').textContent = 'Last name must be at least 2 characters';
+                isValid = false;
+            }
+            
+            // Validate email
+            if (!email) {
+                document.getElementById('emailError').textContent = 'Email is required';
+                isValid = false;
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                isValid = false;
+            }
+            
+            // Validate phone (optional)
+            if (phone && !/^\+?[0-9]{10,15}$/.test(phone)) {
+                document.getElementById('phoneError').textContent = 'Please enter a valid phone number';
+                isValid = false;
+            }
+            
+            // Validate password
+            if (!password) {
+                document.getElementById('passwordError').textContent = 'Password is required';
+                isValid = false;
+            } else if (password.length < 8) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 8 characters';
+                isValid = false;
+            }
+            
+            // Validate confirm password
+            if (!confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Please confirm your password';
+                isValid = false;
+            } else if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+                isValid = false;
+            }
+            
+            // Validate terms checkbox
+            if (!termsChecked) {
+                document.getElementById('termsError').textContent = 'You must agree to the terms and conditions';
+                isValid = false;
+            }
+            
+            // If form is valid, proceed with registration
+            if (isValid) {
+                // Here you would typically send the data to a server
+                // For demonstration, we'll show a success message
+                alert('Registration successful! Redirecting to your dashboard...');
+                // window.location.href = '/dashboard'; // Uncomment to redirect
+            }
+        });
+
+        // Additional validation for better UX
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.value.trim() === '' && this.id !== 'phone') {
+                    const errorElement = document.getElementById(this.id + 'Error');
+                    if (errorElement) {
+                        errorElement.textContent = `${this.placeholder || this.name || 'Field'} is required`;
+                    }
+                }
+            });
+        });
+
+         // Demo: Simulate loading social login logos
+        setTimeout(() => {
+            document.querySelectorAll('.social-btn img').forEach(img => {
+                if (img.alt.includes('Google')) {
+                    img.src = 'https://img.icons8.com/?size=100&id=17949&format=png&color=000000';
+                } else if (img.alt.includes('LinkedIn')) {
+                    img.src = 'https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png';
+                }
+            });
+        }, 500);
+    </script>
+</body>
+</html>
