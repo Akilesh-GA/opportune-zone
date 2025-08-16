@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <title>Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f9fafb;
+    }
+    .hero-bg {
+      background: linear-gradient(to bottom right, #eef2ff, #f5f3ff);
+    }
+    .section-card {
+      background-color: #ffffff;
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+    }
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: 0.3s ease;
+    }
+  </style>
+</head>
+<body class="text-gray-800">
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <span class="text-2xl font-bold text-indigo-600">Opportune Zone</span>
+        <div class="hidden md:flex space-x-8 text-sm font-medium">
+          <a href="#" class="text-indigo-600 border-b-2 border-indigo-600">Home</a>
+          <a href="/jobs" class="text-gray-700 hover:text-indigo-600">Jobs</a>
+          <a href="/companies" class="text-gray-700 hover:text-indigo-600">Companies</a>
+          <a href="/candidates" class="text-gray-700 hover:text-indigo-600">Candidates</a>
+          <a href="/aboutus" class="text-gray-700 hover:text-indigo-600">About Us</a>
+          <a href="/aboutus" class="text-gray-700 hover:text-indigo-600">Login</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-indigo-50 to-purple-50 py-20 px-6 mt-20 mb-20">
+    <div class="max-w-5xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+        Unlock Your Career Potential
+      </h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-10">
+        Welcome to <span class="font-semibold text-indigo-600">Opportune Zone</span> — the bridge between talent and opportunity.  
+        Discover thousands of job openings, connect with top employers, and take the next step toward your dream career.
+      </p>
+      <div class="flex justify-center gap-4">
+        <a href="/jobs" class="px-8 py-3 bg-indigo-600 text-white font-medium rounded-lg shadow hover:bg-indigo-700 transition">
+          Explore Jobs
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <div class="stat-card bg-white p-6 rounded-lg shadow">
+      <div class="counter text-4xl font-bold text-indigo-600 mb-2" data-target="1000">0</div>
+      <p class="text-gray-600">Active Jobs</p>
+    </div>
+    <div class="stat-card bg-white p-6 rounded-lg shadow">
+      <div class="counter text-4xl font-bold text-indigo-600 mb-2" data-target="5000">0</div>
+      <p class="text-gray-600">Registered Candidates</p>
+    </div>
+    <div class="stat-card bg-white p-6 rounded-lg shadow">
+      <div class="counter text-4xl font-bold text-indigo-600 mb-2" data-target="500">0</div>
+      <p class="text-gray-600">Hiring Companies</p>
+    </div>
+    <div class="stat-card bg-white p-6 rounded-lg shadow">
+      <div class="counter text-4xl font-bold text-indigo-600 mb-2" data-target="90" data-suffix="%">0</div>
+      <p class="text-gray-600">Satisfaction Rate</p>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="bg-gradient-to-r from-indigo-50 to-purple-50 py-16">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-10">Why Choose Opportune Zone?</h2>
+      <div class="grid sm:grid-cols-3 gap-8">
+        <div class="section-card">
+          <i class="fas fa-search text-indigo-600 text-4xl mb-4"></i>
+          <h4 class="font-semibold mb-2">Find Jobs</h4>
+          <p class="text-gray-600">Browse thousands of job listings tailored to your skills and goals.</p>
+        </div>
+        <div class="section-card">
+          <i class="fas fa-briefcase text-indigo-600 text-4xl mb-4"></i>
+          <h4 class="font-semibold mb-2">Post Jobs</h4>
+          <p class="text-gray-600">Employers can post job openings and find the perfect match instantly.</p>
+        </div>
+        <div class="section-card">
+          <i class="fas fa-users text-indigo-600 text-4xl mb-4"></i>
+          <h4 class="font-semibold mb-2">Connect</h4>
+          <p class="text-gray-600">Build your professional network and stay ahead in your career.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white shadow-inner py-6 mt-12">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm">
+      <p>© 2025 Opportune Zone | All rights reserved.</p>
+      <div class="flex space-x-6 mt-4 md:mt-0">
+        <a href="#" class="hover:text-indigo-400">Privacy Policy</a>
+        <a href="#" class="hover:text-indigo-400">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".counter");
+
+    counters.forEach(counter => {
+      const target = +counter.getAttribute("data-target");
+      const suffix = counter.getAttribute("data-suffix") || "+";
+      let count = 0;
+      const increment = target / 200;
+
+      const updateCounter = () => {
+        if (count < target) {
+          count += increment;
+          counter.textContent = Math.floor(count) + suffix;
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = target + suffix;
+        }
+      };
+
+      updateCounter();
+    });
+  });
+</script>
+
+</body>
+</html>
